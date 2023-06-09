@@ -1,25 +1,18 @@
 import React, { useEffect, useState } from "react";
+import Table from "./Table";
 
 const App = () => {
-  const [tasks, setTasks] = useState([]);
+	// const [tasks, setTasks] = useState([]);
 
-  useEffect(() => {
-    fetch("/api/tasks")
-      .then((res) => res.json())
-      .then((tasks) => {
-        setTasks(tasks);
-      });
-  }, []);
+	// useEffect(() => {
+	// 	fetch("/api/tasks")
+	// 		.then((res) => res.json())
+	// 		.then((tasks) => {
+	// 			setTasks(tasks);
+	// 		});
+	// }, []);
 
-  return (
-    <main>
-      {tasks.map((task) => (
-        <span className="task" key={task.id}>
-          {task.description}
-        </span>
-      ))}
-    </main>
-  );
+	return <Table />;
 };
 
 export default App;
