@@ -17,6 +17,10 @@ const NewHabit = (props) => {
 		setIsFormDisplayed(false);
 	}
 
+	function handleCancel() {
+		setIsFormDisplayed(false);
+	}
+
 	return (
 		<div>
 			<h5>
@@ -53,6 +57,13 @@ const NewHabit = (props) => {
 					/>
 					<button type="submit" className="btn btn-form">
 						Save
+					</button>
+					<button
+						type="button"
+						className="btn btn-form cancel"
+						onClick={handleCancel}
+					>
+						Cancel
 					</button>
 				</form>
 			)}

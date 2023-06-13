@@ -22,14 +22,21 @@ table {
 
 }
 
+/* MONTH NAV */
 .date {
   text-align: center;
 }
 
+.currMonth,
+.currYear {
+  font-size: 1.4rem;
+}
+
+/* BUTTONS */
 .btn {
   padding: .75rem;
   border: none;
-  background-color: aqua;
+  background-color: #C0CCDA;
   border-radius: 7px;
 }
 
@@ -38,12 +45,18 @@ table {
   padding: .5rem;
 }
 
+.btn-month {
+  background: none;
+  font-size: 1.2rem;
+}
+
+/* MODAL */
 form {
   width: 50vw;
   margin: 0 auto;
   padding: 2rem;
   border-radius: 7px;
-  background-color: #e6ffff;
+  background-color: #ecf0f4;
   font-weight: 400;
 }
 
@@ -63,6 +76,65 @@ input {
 
 }
 
-.table-heading {
-  /* text-align: start; */
+/* TABLE  */
+
+table {
+  border: 1px solid #b3adad;
+  border-collapse: collapse;
+  padding: 5px;
+  width: 100%;
+  min-width: 1175px;
+  table-layout: fixed;
+  margin: 25px 0;
+  font-size: 0.9em;
+}
+
+table th {
+  border: 1px solid #b3adad;
+  padding: 5px;
+  background: #BFDFCE;
+  color: #313030;
+}
+
+table td {
+  border: 1px solid #b3adad;
+  text-align: center;
+  padding: 5px;
+  background: #ffffff;
+  color: #313030;
+}
+
+.col-lg,
+.col-md,
+.col-sm {
+  overflow: hidden;
+}
+
+.col-lg {
+  width: 120px;
+}
+
+.col-sm {
+  width: 15px;
+}
+
+.col-md {
+  width: 50px;
+}
+
+.icon {
+  height: 15px;
+  width: 15px;
+}
+
+td[data-row-color="yellow"] {
+  background-color: #FDF2D0;
+}
+
+td[data-row-color="blue"] {
+  background-color: #C0CCDA;
+}
+
+td[data-row-color="green"] {
+  background-color: #BFDFCE;
 }

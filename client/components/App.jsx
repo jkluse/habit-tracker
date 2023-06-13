@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
-import Table from "./Table";
+import Tracker from "./Tracker";
+import Nav from "./Nav";
+import Footer from "./Footer";
 
 const App = () => {
-	// const [tasks, setTasks] = useState([]);
-
-	// useEffect(() => {
-	// 	fetch("/api/tasks")
-	// 		.then((res) => res.json())
-	// 		.then((tasks) => {
-	// 			setTasks(tasks);
-	// 		});
-	// }, []);
-
-	return <Table />;
+	return (
+		<>
+			<Nav />
+			<Tracker />
+			<Footer />
+		</>
+	);
 };
 
 export default App;
