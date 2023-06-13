@@ -5,7 +5,7 @@ const Table = (props) => {
 	const colGroupElements = [];
 	const headerElements = [];
 
-	console.log(currMonthCheckmarks);
+	console.log("currMonthcheckmarks", currMonthCheckmarks);
 
 	//colGroup loop
 	for (let i = 1; i <= daysInCurrMonth; i++) {
@@ -50,46 +50,57 @@ const Table = (props) => {
 	);
 
 	function createCells(habit, index) {
+		let checkmarkIndexForHabitID;
+		for (let i = 0; i < currMonthCheckmarks.length; i++) {
+			if (currMonthCheckmarks[i].habit_id === habit.id)
+				checkmarkIndexForHabitID = i;
+		}
+
+		// does currentHabitID have an
 		const cellArr = [];
 		for (let i = 1; i <= daysInCurrMonth; i++) {
-			const element = currMonthCheckmarks[index]?.days.includes(i) ? (
-				<td
-					key={i}
-					onClick={toggleCheck}
-					className="col-sm"
-					data-day={i}
-					data-row={index}
-					data-row-color={
-						index === 0 || index % 3 === 0
-							? "yellow"
-							: index % 2 === 0
-							? "blue"
-							: "green"
-					}
-				>
-					<svg
-						className="icon"
-						viewBox="0 0 24 24"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
+			//For every day, if currMonthCheckmarks[checkmarkIndexForHabitID].habit_id and habit.id are equal and has checkmark
+
+			const element =
+				habit.id === currMonthCheckmarks[checkmarkIndexForHabitID]?.habit_id &&
+				currMonthCheckmarks[checkmarkIndexForHabitID]?.days.includes(i) ? (
+					<td
+						key={i}
+						onClick={toggleCheck}
+						className="col-sm"
+						data-day={i}
+						data-row={index}
+						data-row-color={
+							index === 0 || index % 3 === 0
+								? "yellow"
+								: index % 2 === 0
+								? "blue"
+								: "green"
+						}
 					>
-						<path
-							d="M9.00002 16.2001L4.80002 12.0001L3.40002 13.4001L9.00002 19.0001L21 7.0001L19.6 5.6001L9.00002 16.2001Z"
-							fill="#4F4F4F"
-						></path>
-					</svg>
-				</td>
-			) : (
-				<td
-					key={i}
-					onClick={toggleCheck}
-					className="col-sm"
-					data-day={i}
-					data-row={index}
-				>
-					&nbsp;
-				</td>
-			);
+						<svg
+							className="icon"
+							viewBox="0 0 24 24"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M9.00002 16.2001L4.80002 12.0001L3.40002 13.4001L9.00002 19.0001L21 7.0001L19.6 5.6001L9.00002 16.2001Z"
+								fill="#4F4F4F"
+							></path>
+						</svg>
+					</td>
+				) : (
+					<td
+						key={i}
+						onClick={toggleCheck}
+						className="col-sm"
+						data-day={i}
+						data-row={index}
+					>
+						&nbsp;
+					</td>
+				);
 
 			cellArr.push(element);
 		}
