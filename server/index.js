@@ -18,6 +18,7 @@ app.get("/api/habits", (req, res) => {
 app.get("/api/checkmarks/:month/:year", (req, res) => {
 	const month = req.params.month;
 	const year = req.params.year;
+	console.log("month", month, "year", year);
 
 	sql`SELECT * FROM checkmark WHERE month = ${month} AND year = ${year} `.then(
 		(rows) => {
@@ -62,7 +63,7 @@ app.patch("/api/checkmarks/:month/:year", (req, res) => {
 		});
 	console.log(habit_id);
 
-	sql`UPDATE checkmark SET days = ${days} WHERE habit_id = ${habit_id} RETURNING *`.then(
+	sql`UPDATE checkmark SET days = ${days} WHERE habit_id = ${habit_id} AND month = ${month} AND year = ${year} RETURNING *`.then(
 		(rows) => {
 			if (rows.length === 0)
 				res.status(404).send({ message: "habit_id not found" });

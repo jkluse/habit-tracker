@@ -27,12 +27,57 @@ const Tracker = () => {
 			});
 	}, [currMonth]);
 
+	return (
+		<div>
+			<MonthNav
+				currMonth={currMonth}
+				currYear={currYear}
+				setCurrMonth={setCurrMonth}
+				setCurrYear={setCurrYear}
+			/>
+			{habits && currMonthCheckmarks && (
+				<Table
+					habits={habits}
+					daysInCurrMonth={daysInCurrMonth}
+					currMonthCheckmarks={currMonthCheckmarks}
+					updateCheckmarks={updateCheckmarks}
+				/>
+			)}
+			<NewHabit updateGoals={updatehabits} />
+		</div>
+	);
+
+	// function removeCheckmarks(body, markIndex) {
+	// 	console.log(body, markIndex, "currMonth", currMonth);
+	// 	const { days, habit_id } = body;
+
+	// 	// fetch(`api/checkmarks/${currMonth}/${currYear}`, {
+	// 	// 	method: "PATCH",
+	// 	// 	headers: { "Content-Type": "application/json" },
+	// 	// 	body: JSON.stringify({
+	// 	// 		days: days,
+	// 	// 		habit_id: habit_id,
+	// 	// 	}),
+	// 	// })
+	// 	// 	.then((res) => res.json())
+	// 	// 	.then((data) => {
+	// 	// 		console.log(data);
+	// 	// 		fetch(`/api/checkmarks/${currMonth}/${currYear}`)
+	// 	// 			.then((res) => res.json())
+	// 	// 			.then((checkmarks) => {
+	// 	// 				setcurrMonthCheckmarks(checkmarks);
+	// 	// 			});
+	// 	// 	})
+	// 	// 	.catch((err) => console.log(err));
+	// }
+
 	function updateCheckmarks(body, markIndex) {
-		console.log(body, markIndex);
+		console.log(body, markIndex, "currMonth", currMonth);
 
 		const { days, habit_id } = body;
 
 		if (markIndex === null) {
+			console.log("post");
 			// crete POST checkmarks
 			fetch(`api/checkmarks/${currMonth}/${currYear}`, {
 				method: "POST",
@@ -45,13 +90,16 @@ const Tracker = () => {
 				.then((res) => res.json())
 				.then((data) => {
 					console.log(data);
-					setcurrMonthCheckmarks([
-						...currMonthCheckmarks,
-						(currMonthCheckmarks[markIndex] = data),
-					]);
+					fetch(`/api/checkmarks/${currMonth}/${currYear}`)
+						.then((res) => res.json())
+						.then((checkmarks) => {
+							setcurrMonthCheckmarks(checkmarks);
+						});
 				})
 				.catch((err) => console.log(err));
 		} else {
+			console.log("patch");
+			console.log(days);
 			//update
 			fetch(`api/checkmarks/${currMonth}/${currYear}`, {
 				method: "PATCH",
@@ -64,13 +112,15 @@ const Tracker = () => {
 				.then((res) => res.json())
 				.then((data) => {
 					console.log(data);
-					setcurrMonthCheckmarks([
-						...currMonthCheckmarks,
-						(currMonthCheckmarks[markIndex] = data),
-					]);
+					fetch(`/api/checkmarks/${currMonth}/${currYear}`)
+						.then((res) => res.json())
+						.then((checkmarks) => {
+							setcurrMonthCheckmarks(checkmarks);
+						});
 				})
 				.catch((err) => console.log(err));
 		}
+		console.log(currMonthCheckmarks);
 	}
 
 	function updatehabits(habit) {
@@ -92,25 +142,5 @@ const Tracker = () => {
 			})
 			.catch((err) => console.log(err));
 	}
-
-	return (
-		<div>
-			<MonthNav
-				currMonth={currMonth}
-				currYear={currYear}
-				setCurrMonth={setCurrMonth}
-				setCurrYear={setCurrYear}
-			/>
-			{habits && currMonthCheckmarks && (
-				<Table
-					habits={habits}
-					daysInCurrMonth={daysInCurrMonth}
-					currMonthCheckmarks={currMonthCheckmarks}
-					updateCheckmarks={updateCheckmarks}
-				/>
-			)}
-			<NewHabit updateGoals={updatehabits} />
-		</div>
-	);
 };
 export default Tracker;

@@ -1,8 +1,13 @@
 import React from "react";
 
 const Table = (props) => {
-	const { habits, daysInCurrMonth, currMonthCheckmarks, updateCheckmarks } =
-		props;
+	const {
+		habits,
+		daysInCurrMonth,
+		currMonthCheckmarks,
+		updateCheckmarks,
+		removeCheckmarks,
+	} = props;
 	const colGroupElements = [];
 	const headerElements = [];
 
@@ -68,7 +73,7 @@ const Table = (props) => {
 					<td
 						key={i}
 						onClick={toggleCheck}
-						className="col-sm"
+						className="col-sm icon"
 						data-marks={habitIndex}
 						data-day={i}
 						data-row={index}
@@ -83,12 +88,17 @@ const Table = (props) => {
 					>
 						<svg
 							className="icon"
+							data-day={i}
 							data-marks={habitIndex}
+							data-habit-id={habit.id}
 							viewBox="0 0 24 24"
 							fill="none"
 							xmlns="http://www.w3.org/2000/svg"
 						>
 							<path
+								className="icon"
+								data-marks={habitIndex}
+								data-habit-id={habit.id}
 								d="M9.00002 16.2001L4.80002 12.0001L3.40002 13.4001L9.00002 19.0001L21 7.0001L19.6 5.6001L9.00002 16.2001Z"
 								fill="#4F4F4F"
 							></path>
@@ -101,7 +111,6 @@ const Table = (props) => {
 						className="col-sm"
 						data-marks={habitIndex}
 						data-day={i}
-						data-row={index}
 						data-habit-id={habit.id}
 					>
 						&nbsp;
@@ -128,35 +137,36 @@ const Table = (props) => {
 	}
 
 	function toggleCheck(e) {
-		let colors = ["#FDF2D0", "#C0CCDA", "#BFDFCE"];
-		let row = e.target.getAttribute("data-row");
 		let day = Number(e.target.getAttribute("data-day"));
 		let habit_id = Number(e.target.getAttribute("data-habit-id"));
 		let markIndex = e.target.getAttribute("data-marks")
 			? Number(e.target.getAttribute("data-marks"))
 			: null;
-		console.log(markIndex);
-		if (!e.target.classList.contains("icon")) {
-			// e.target.classList.add("checked");
-			e.target.style.background =
-				row === 0 || row % 3 === 0
-					? colors[0]
-					: row % 2 === 0
-					? colors[1]
-					: colors[2];
+		console.log(habit_id);
 
-			e.target.innerHTML = `<svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.00002 16.2001L4.80002 12.0001L3.40002 13.4001L9.00002 19.0001L21 7.0001L19.6 5.6001L9.00002 16.2001Z" fill="#4F4F4F"></path></svg>`;
-
-			updateCheckmarks(
-				{
-					days: currMonthCheckmarks[markIndex]
-						? [...currMonthCheckmarks[markIndex].days, day]
-						: [day],
-					habit_id: habit_id ? habit_id : [],
-				},
-				markIndex
-			);
+		//remove mark
+		if (e.target.classList.contains("icon")) {
+			let updatedDays = currMonthCheckmarks[markIndex].days.filter((date) => {
+				return date !== day;
+			});
+			console.log(updatedDays);
+			// removeCheckmarks({ days: day }, markIndex);
+			updateCheckmarks({ days: updatedDays, habit_id }, markIndex);
+			return;
 		}
+		console.log("missed me");
+		console.log(e.target);
+
+		// add mark
+		updateCheckmarks(
+			{
+				days: currMonthCheckmarks[markIndex]
+					? [...currMonthCheckmarks[markIndex].days, day]
+					: [day],
+				habit_id: habit_id ? habit_id : [],
+			},
+			markIndex
+		);
 	}
 };
 
