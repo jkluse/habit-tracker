@@ -27,19 +27,70 @@ const Tracker = () => {
 			});
 	}, [currMonth]);
 
-	console.log(currMonthCheckmarks);
-	// function updateCheckmarksRow(row){
-	// 	fetch(`api/checkmarks/${row}, {
-	// 		method: "POST",
-	// 		headers: {Content-Type": "application/json"}
-	// 	}`)
-	// }
+	function updateCheckmarks(body, markIndex) {
+		console.log(body, markIndex);
+
+		const { days, habit_id } = body;
+
+		if (markIndex === null) {
+			// crete POST checkmarks
+			fetch(`api/checkmarks/${currMonth}/${currYear}`, {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					days: days,
+					habit_id: habit_id,
+				}),
+			})
+				.then((res) => res.json())
+				.then((data) => {
+					console.log(data);
+					setcurrMonthCheckmarks([
+						...currMonthCheckmarks,
+						(currMonthCheckmarks[markIndex] = data),
+					]);
+				})
+				.catch((err) => console.log(err));
+		} else {
+			//update
+			fetch(`api/checkmarks/${currMonth}/${currYear}`, {
+				method: "PATCH",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					days: days,
+					habit_id: habit_id,
+				}),
+			})
+				.then((res) => res.json())
+				.then((data) => {
+					console.log(data);
+					setcurrMonthCheckmarks([
+						...currMonthCheckmarks,
+						(currMonthCheckmarks[markIndex] = data),
+					]);
+				})
+				.catch((err) => console.log(err));
+		}
+	}
 
 	function updatehabits(habit) {
 		console.log(habit);
-		setHabits((prevhabits) => {
-			return [...prevhabits, habit];
-		});
+
+		fetch(`api/habits/`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				name: habit.name,
+				goal: habit.days,
+			}),
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				setHabits([...habits, data]);
+			})
+			.catch((err) => console.log(err));
 	}
 
 	return (
@@ -55,6 +106,7 @@ const Tracker = () => {
 					habits={habits}
 					daysInCurrMonth={daysInCurrMonth}
 					currMonthCheckmarks={currMonthCheckmarks}
+					updateCheckmarks={updateCheckmarks}
 				/>
 			)}
 			<NewHabit updateGoals={updatehabits} />
