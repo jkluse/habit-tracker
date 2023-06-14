@@ -156,6 +156,10 @@ td[data-row-color="green"] {
 }
 
 /* NAV */
+nav {
+  min-width: 1175px;
+  max-width: 1600px;
+}
 
 .nav-wrapper {
   display: flex;
@@ -170,9 +174,15 @@ td[data-row-color="green"] {
   padding-left: 1.4rem;
   position: relative;
   margin-bottom: 4rem;
+
 }
 
 .nav-wrapper a {
   text-decoration: none;
   color: inherit;
+}
+
+.date {
+  min-width: 1175px;
+  max-width: 1600px;
 }
