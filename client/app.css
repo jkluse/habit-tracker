@@ -27,10 +27,13 @@ table {
   text-align: center;
 }
 
-.currMonth,
-.currYear {
+.currMonth {
   font-size: 1.4rem;
+  padding: 0 2rem;
+  width: 300px;
+  overflow: hidden;
 }
+
 
 /* BUTTONS */
 .btn {
@@ -43,11 +46,14 @@ table {
 .btn-form {
   margin-top: 1rem;
   padding: .5rem;
+  margin: .25rem;
 }
 
 .btn-month {
   background: none;
-  font-size: 1.2rem;
+  font-size: 2rem;
+  margin: 0 2rem;
+  color: #4F4F4F;
 }
 
 /* MODAL */
@@ -84,6 +90,7 @@ table {
   padding: 5px;
   width: 100%;
   min-width: 1175px;
+  max-width: 1600px;
   table-layout: fixed;
   margin: 25px 0;
   font-size: 0.9em;
@@ -142,4 +149,30 @@ td[data-row-color="green"] {
 .green {
   background-color: #BFDFCE;
 
+}
+
+.col-sm:hover {
+  cursor: pointer;
+}
+
+/* NAV */
+
+.nav-wrapper {
+  display: flex;
+  gap: 1.9rem;
+  justify-content: flex-start;
+  align-items: center;
+  height: 1.8rem;
+  padding: 1.1rem;
+  border-bottom: 0.5px solid #586380;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding-left: 1.4rem;
+  position: relative;
+  margin-bottom: 4rem;
+}
+
+.nav-wrapper a {
+  text-decoration: none;
+  color: inherit;
 }

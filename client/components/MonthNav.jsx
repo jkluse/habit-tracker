@@ -19,26 +19,15 @@ const MonthNav = (props) => {
 
 	return (
 		<div className="date">
-			<span>
-				<button
-					className="btn btn-month"
-					type="button"
-					onClick={handleClickBack}
-				>
-					&lt;
-				</button>
-			</span>
-			<span className="currMonth">{months[currMonth]}</span>{" "}
-			<span className="currYear">{currYear}</span>
-			<span>
-				<button
-					className="btn btn-month"
-					type="button"
-					onClick={handleClickFwd}
-				>
-					&gt;
-				</button>
-			</span>
+			<button className="btn btn-month" type="button" onClick={handleClickBack}>
+				&lt;
+			</button>
+			<span className="currMonth">
+				{months[currMonth]} {currYear}
+			</span>{" "}
+			<button className="btn btn-month" type="button" onClick={handleClickFwd}>
+				&gt;
+			</button>
 		</div>
 	);
 

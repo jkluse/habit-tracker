@@ -18,7 +18,6 @@ app.get("/api/habits", (req, res) => {
 app.get("/api/checkmarks/:month/:year", (req, res) => {
 	const month = req.params.month;
 	const year = req.params.year;
-	console.log("month", month, "year", year);
 
 	sql`SELECT * FROM checkmark WHERE month = ${month} AND year = ${year} `.then(
 		(rows) => {
@@ -29,7 +28,6 @@ app.get("/api/checkmarks/:month/:year", (req, res) => {
 
 // create new habit
 app.post("/api/habits/", (req, res) => {
-	console.log("new habit");
 	const { name, goal } = req.body;
 
 	sql`INSERT INTO habit (name, goal) VALUES (${name}, ${goal}) RETURNING *`
@@ -41,11 +39,9 @@ app.post("/api/habits/", (req, res) => {
 
 //update checkmarks
 app.patch("/api/checkmarks/:month/:year", (req, res) => {
-	console.log("patch");
 	const month = Number(req.params.month);
 	const year = Number(req.params.year);
 	const { days, habit_id } = req.body;
-	console.log(typeof days, days);
 
 	// Guard clauses
 	if (!Array.isArray(days))
@@ -61,7 +57,6 @@ app.patch("/api/checkmarks/:month/:year", (req, res) => {
 		return res.status(400).send({
 			message: "Bad request, month/year/habit_id should be an integer.",
 		});
-	console.log(habit_id);
 
 	sql`UPDATE checkmark SET days = ${days} WHERE habit_id = ${habit_id} AND month = ${month} AND year = ${year} RETURNING *`.then(
 		(rows) => {
@@ -99,11 +94,6 @@ app.post("/api/checkmarks/:month/:year", (req, res) => {
 			res.status(201).send(rows[0]);
 		}
 	);
-});
-
-app.patch("*", (req, res) => {
-	console.log("default route");
-	res.status(400).send({ msg: "no route" });
 });
 
 app.listen(PORT, () => {

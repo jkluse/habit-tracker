@@ -11,8 +11,6 @@ const Table = (props) => {
 	const colGroupElements = [];
 	const headerElements = [];
 
-	console.log("currMonthcheckmarks", currMonthCheckmarks);
-
 	//colGroup loop
 	for (let i = 1; i <= daysInCurrMonth; i++) {
 		colGroupElements.push(<col key={i} className="col-sm" />);
@@ -22,7 +20,6 @@ const Table = (props) => {
 	for (let i = 1; i <= daysInCurrMonth; i++) {
 		headerElements.push(<th key={i}>{i}</th>);
 	}
-	console.log("habits", habits);
 	//tdElements loop
 	const cells = habits.map((habit, i) => {
 		return (
@@ -142,20 +139,17 @@ const Table = (props) => {
 		let markIndex = e.target.getAttribute("data-marks")
 			? Number(e.target.getAttribute("data-marks"))
 			: null;
-		console.log(habit_id);
 
 		//remove mark
 		if (e.target.classList.contains("icon")) {
 			let updatedDays = currMonthCheckmarks[markIndex].days.filter((date) => {
 				return date !== day;
 			});
-			console.log(updatedDays);
+
 			// removeCheckmarks({ days: day }, markIndex);
 			updateCheckmarks({ days: updatedDays, habit_id }, markIndex);
 			return;
 		}
-		console.log("missed me");
-		console.log(e.target);
 
 		// add mark
 		updateCheckmarks(

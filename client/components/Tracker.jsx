@@ -47,37 +47,10 @@ const Tracker = () => {
 		</div>
 	);
 
-	// function removeCheckmarks(body, markIndex) {
-	// 	console.log(body, markIndex, "currMonth", currMonth);
-	// 	const { days, habit_id } = body;
-
-	// 	// fetch(`api/checkmarks/${currMonth}/${currYear}`, {
-	// 	// 	method: "PATCH",
-	// 	// 	headers: { "Content-Type": "application/json" },
-	// 	// 	body: JSON.stringify({
-	// 	// 		days: days,
-	// 	// 		habit_id: habit_id,
-	// 	// 	}),
-	// 	// })
-	// 	// 	.then((res) => res.json())
-	// 	// 	.then((data) => {
-	// 	// 		console.log(data);
-	// 	// 		fetch(`/api/checkmarks/${currMonth}/${currYear}`)
-	// 	// 			.then((res) => res.json())
-	// 	// 			.then((checkmarks) => {
-	// 	// 				setcurrMonthCheckmarks(checkmarks);
-	// 	// 			});
-	// 	// 	})
-	// 	// 	.catch((err) => console.log(err));
-	// }
-
 	function updateCheckmarks(body, markIndex) {
-		console.log(body, markIndex, "currMonth", currMonth);
-
 		const { days, habit_id } = body;
 
 		if (markIndex === null) {
-			console.log("post");
 			// crete POST checkmarks
 			fetch(`api/checkmarks/${currMonth}/${currYear}`, {
 				method: "POST",
@@ -89,7 +62,6 @@ const Tracker = () => {
 			})
 				.then((res) => res.json())
 				.then((data) => {
-					console.log(data);
 					fetch(`/api/checkmarks/${currMonth}/${currYear}`)
 						.then((res) => res.json())
 						.then((checkmarks) => {
@@ -98,9 +70,6 @@ const Tracker = () => {
 				})
 				.catch((err) => console.log(err));
 		} else {
-			console.log("patch");
-			console.log(days);
-			//update
 			fetch(`api/checkmarks/${currMonth}/${currYear}`, {
 				method: "PATCH",
 				headers: { "Content-Type": "application/json" },
@@ -120,12 +89,9 @@ const Tracker = () => {
 				})
 				.catch((err) => console.log(err));
 		}
-		console.log(currMonthCheckmarks);
 	}
 
 	function updatehabits(habit) {
-		console.log(habit);
-
 		fetch(`api/habits/`, {
 			method: "POST",
 			headers: {
