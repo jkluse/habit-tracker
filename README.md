@@ -1,18 +1,17 @@
 # Habit Tracker - Full Stack React Appliation
 
 ## Features
-- Watch videos from YouTube
-- View video details like title, description, likes, and views
-- Comment on individual videos, comments stored in Postgres
+- Create habits that you want to track on a monthly basis; set a goal for how many times you complete habit / per month.
+- Update Calendar grid on days you complete your habit.
+- Habits will turn green when you reach you monthly goal. Enjoy! 
   
 ## Built With
 - [React](https://reactjs.org/) - A JavaScript library for building user interfaces
 - [Vite](https://vitejs.dev/) - A build tool that is faster than Webpack
-- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework
 - [Node.js](https://nodejs.org/en/) - JavaScript runtime
 - [Express.js](https://expressjs.com/) - Web application framework
 - [PostgreSQL](https://www.postgresql.org/) - Open source object-relational database system
-- [YouTube API](https://developers.google.com/youtube) - Provides access to YouTube data like videos, playlists, etc.
+
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development purposes.
@@ -23,19 +22,18 @@ These instructions will get you a copy of the project up and running on your loc
 - PostgreSQL
 
 ### Installing
-1. Clone the repository:
-git clone https://github.com/GroupProject123456/youtubeclone.git
+1. Fork & Clone the repository:
 2. Install server all dependencies from root directory:
 npm install
 
 ## Development Setup
 
 1. Install dependencies: `npm install`
-1. Create your database: `createdb YOUR_DB`
-1. Run your migrations: `psql -f server/migration.sql YOUR_DB`
-1. Create your `.env` file: `cp .env.template .env`
-1. Add your info in `.env`
-1. Run the app: `npm run dev`
+2. Create your database: `createdb YOUR_DB`
+3. Run your migrations: `psql -f server/migration.sql YOUR_DB`
+4. Create your `.env` file: `cp .env.template .env`
+5. Add your info in `.env`
+6. From root directory, run the app: `npm run dev`
 
 ## Scripts
 
