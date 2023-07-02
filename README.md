@@ -1,16 +1,32 @@
-# Full-Stack React Example
+# Habit Tracker - Full Stack React Appliation
 
-This repo contains an example of a full-stack application with an express backend and a React frontend.
+## Features
+- Watch videos from YouTube
+- View video details like title, description, likes, and views
+- Comment on individual videos, comments stored in Postgres
+  
+## Built With
+- [React](https://reactjs.org/) - A JavaScript library for building user interfaces
+- [Vite](https://vitejs.dev/) - A build tool that is faster than Webpack
+- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework
+- [Node.js](https://nodejs.org/en/) - JavaScript runtime
+- [Express.js](https://expressjs.com/) - Web application framework
+- [PostgreSQL](https://www.postgresql.org/) - Open source object-relational database system
+- [YouTube API](https://developers.google.com/youtube) - Provides access to YouTube data like videos, playlists, etc.
 
-It uses vite as the module bundler and dotenv for configuration. It's organized as a mono-repo using [npm workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces) which allows us to have our client and server in one repo.
+## Getting Started
+These instructions will get you a copy of the project up and running on your local machine for development purposes.
 
-> **Note**: When you run `npm install` at the root, it will install all dependencies listed in `package.json`, `server/package.json`, and `client/package.json`.
+### Prerequisites
+- Node.js
+- npm
+- PostgreSQL
 
-## Customizing the Template
-
-1. Create new repo using this one as a template.
-1. Pull that repo down.
-1. Update `./server/migration.sql` to the schema for your application.
+### Installing
+1. Clone the repository:
+git clone https://github.com/GroupProject123456/youtubeclone.git
+2. Install server all dependencies from root directory:
+npm install
 
 ## Development Setup
 
@@ -38,3 +54,9 @@ It uses vite as the module bundler and dotenv for configuration. It's organized 
 
 - `npm run dev` - Runs the server in watch mode.
 - `npm run start` - Starts the server (mainly used when deploying).
+
+
+
+## Author
+- John Kluse
+
