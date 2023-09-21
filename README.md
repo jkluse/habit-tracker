@@ -53,8 +53,12 @@ npm install
 - `npm run dev` - Runs the server in watch mode.
 - `npm run start` - Starts the server (mainly used when deploying).
 
+#Application Images
 
 
 ## Author
 - John Kluse
+<img width="2032" alt="Screenshot 2023-09-21 at 3 05 23 PM" src="https://github.com/jkluse/habit-tracker/assets/25851301/66d30bdd-0ba7-467d-b6bc-f20e4910d8f7">
+
+<img width="1599" alt="Screenshot 2023-09-21 at 3 07 12 PM" src="https://github.com/jkluse/habit-tracker/assets/25851301/95a51947-8ee9-4ebf-905f-1b46d1e43197">
 
